@@ -1,0 +1,26 @@
+const { expect } = require('chai');
+const authService = require('../../src/services/authService');
+const UserModel = require('../../src/models/userModel');
+
+describe('Authentication Service', () => {
+  describe('registerUser', () => {
+    it('should register a user with valid data', async () => {
+      const user = await authService.registerUser('newuser', 'newpass');
+      expect(user).to.have.property('username').eql('newuser');
+    });
+  });
+
+  describe('authenticateUser', () => {
+    it('should authenticate a user with correct credentials', async () => {
+      await authService.registerUser('testuser', 'testpass');
+      const isAuthenticated = await authService.authenticateUser('testuser', 'testpass');
+      expect(isAuthenticated).to.be.true;
+    });
+
+    it('should fail authentication with incorrect credentials', async () => {
+      const isAuthenticated = await authService.authenticateUser('testuser', 'wrongpass');
+      expect(isAuthenticated).to.be.false;
+    });
+  });
+});
+

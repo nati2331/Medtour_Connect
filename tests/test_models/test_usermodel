@@ -1,0 +1,21 @@
+const { expect } = require('chai');
+const UserModel = require('../../src/models/userModel');
+
+describe('User Model', () => {
+  describe('createUser', () => {
+    it('should create a user with valid data', async () => {
+      const user = await UserModel.createUser({ username: 'testuser', password: 'testpass' });
+      expect(user).to.have.property('username').eql('testuser');
+      expect(user).to.have.property('password');
+    });
+  });
+
+  describe('findUserByUsername', () => {
+    it('should find a user by username', async () => {
+      await UserModel.createUser({ username: 'finduser', password: 'testpass' });
+      const user = await UserModel.findUserByUsername('finduser');
+      expect(user).to.have.property('username').eql('finduser');
+    });
+  });
+});
+

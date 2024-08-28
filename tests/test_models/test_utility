@@ -1,0 +1,21 @@
+const { expect } = require('chai');
+const { formatDate, calculateAge } = require('../../src/utils');
+
+describe('Utility Functions', () => {
+  describe('formatDate', () => {
+    it('should format a date correctly', () => {
+      const date = new Date('2024-08-26T00:00:00Z');
+      const formattedDate = formatDate(date);
+      expect(formattedDate).to.equal('August 26, 2024');
+    });
+  });
+
+  describe('calculateAge', () => {
+    it('should calculate age from birthdate', () => {
+      const birthdate = new Date('2000-08-26T00:00:00Z');
+      const age = calculateAge(birthdate);
+      expect(age).to.equal(24); // Assuming current year is 2024
+    });
+  });
+});
+

@@ -1,0 +1,22 @@
+const { expect } = require('chai');
+const sinon = require('sinon');
+const userController = require('../../src/controllers/userController');
+const UserModel = require('../../src/models/userModel');
+
+describe('User Controller', () => {
+  describe('getUser', () => {
+    it('should return a user by username', async () => {
+      const req = { params: { username: 'testuser' } };
+      const res = { json: sinon.spy() };
+
+      sinon.stub(UserModel, 'findUserByUsername').returns(Promise.resolve({ username: 'testuser' }));
+
+      await userController.getUser(req, res);
+
+      expect(res.json.calledOnce).to.be.true;
+      expect(res.json.calledWith({ username: 'testuser' })).to.be.true;
+
+      UserModel.findUserByUsername.restore();
+    });
+  });
+});
