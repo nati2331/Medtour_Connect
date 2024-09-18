@@ -3,6 +3,12 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware to log requests
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    next();
+});
+
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -18,11 +24,11 @@ app.get('/', (req, res) => {
 });
 
 // Sync database and start server
-const { sequelize } = require('../models'); // Adjusted path to models
+const { sequelize } = require('../models');
 
 sequelize.sync()
   .then(() => {
-    app.listen(port, () => {
+    app.listen(port, '0.0.0.0', () => {
       console.log(`Server is running on port ${port}`);
     });
   })

@@ -1,4 +1,4 @@
-'use strict';
+er.jsuse strict';
 const {
   Model
 } = require('sequelize');
