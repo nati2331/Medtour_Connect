@@ -1,5 +1,7 @@
 The goal of this file is to create a rsponsive website.
 MedTour Connect is a platform designed to connect patients seeking medical treatments abroad with healthcare providers offering those services. Our platform aims to simplify the process of finding, comparing, and selecting the best healthcare options globally.
+![image](https://github.com/user-attachments/assets/939e4251-83f9-4dd9-bcdd-c04e4ea16b75)
+
 
 ## Introduction
 
